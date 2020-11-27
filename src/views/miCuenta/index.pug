@@ -1,0 +1,46 @@
+extends ../layout/index
+block contenido
+    if user
+        p.mensajeAlerta
+        .container.d-md-flex
+            .col-10.col-md-6.mx-auto.mt-4.p-0
+                p.text-center.text-md-left
+                    if IUser.imagen != 'https://www.adl-logistica.org/wp-content/uploads/2019/07/imagen-perfil-sin-foto.png'
+                        img(class="rounded-circle", src=`/assets/uploads/${IUser.imagen}`, alt="imagen del perfil del usuario", width="250px", height="220px", onerror="this.src='https://www.adl-logistica.org/wp-content/uploads/2019/07/imagen-perfil-sin-foto.png'")
+                    else
+                        img(class="rounded-circle", src= IUser.imagen, alt="imagen del perfil del usuario", width="250px", height="220px")
+                    .col-9.col-md-8.col-lg-6.col-xl-5.text-right.iconImagen
+                        i(class="fas fa-images fa-3x")
+                        input#fileImage(type="file", name="imagenPerfil", accept="image/jpeg, image/jpg").d-none
+            .col-10.col-md-6.mt-4.mx-auto
+                div
+                    form(action="#")
+                        input#user(type="hidden", name="userId", value=IUser._id).d-none
+                        .form-group.Icon
+                            input#name(type="text", class="form-control", name="nombre", value= IUser.nombre, autocomplete="off", readonly)
+                            span
+                                i(class="fas fa-user")
+                        .form-group.Icon
+                            input#lastName(type="text", class="form-control", name="apellido", value= IUser.apellido, autocomplete="off", readonly)
+                            span
+                                i(class="fas fa-user")
+                        .form-group.Icon
+                            input#age(type="number", class="form-control", name="edad", value= IUser.edad, autocomplete="off", readonly)
+                            span
+                                i(class="fas fa-sort-numeric-up-alt")
+                        .form-group.Icon
+                            input#email(type="text", class="form-control", name="correo", value= IUser.correo, autocomplete="off", readonly)
+                            span
+                                i(class="fas fa-envelope")
+                        .form-group.Icon.inputPass
+                            input#passw(type="password", class="form-control", name="password", placeholder="this field just available for change the password", autocomplete="off", readonly)
+                            span
+                                i(class="far fa-eye-slash ojoIcono")
+                        .form-group.d-flex.justify-content-around
+                            input#Editar(type="submit", class="btn btn-primary btn-lg", value="Editar")
+                            input#Cancelar(type="button", class="btn btn-danger btn-lg d-none", value="Cancelar")
+    else
+        script.
+            window.location = '/loginPage'
+    
+    script(src="/js/miCuenta.js")

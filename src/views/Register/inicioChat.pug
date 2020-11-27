@@ -1,0 +1,32 @@
+extends ../layout/index
+block contenido
+    if user
+        script.
+            window.location = '/home'
+    .m-3
+        if message
+            .alert.alert-danger.alert-dismissible.show.fade(role="alert")= message
+                button.close(type="button", data-dismiss="alert")
+                    span(aria-hidden="true") &times;
+    .mt-5
+        .col-8.col-lg-6.col-xl-4.mx-auto
+            .card
+                .card-header
+                    h3.text-center Registrate
+                .card-body
+                    form(action="/RegisterChat", method="POST")
+                        .form-group
+                            input(type="text", name="nombre", class="form-control", placeholder="Name", value=nombre, autofocus, required, autocomplete="off")
+                        .form-group
+                            input(type="text", name="apellido", class="form-control", placeholder="Last name", value=apellido, required, autocomplete="off")
+                        .form-group
+                            input(type="number", name="edad", class="form-control", placeholder="Age", value=edad, required, autocomplete="off")
+                        .form-group
+                            input(type="email", name="correo", class="form-control", placeholder="Email", value=correo, required, autocomplete="off")
+                        .form-group
+                            input(type="password", name="password", class="form-control", placeholder="Password", required, autocomplete="off")
+                        .form-group
+                            input(type="submit", class="btn btn-primary btn-block", value="Register")
+                    div
+                        small Do you already have an account? 
+                            a(href="/loginPage") Login here

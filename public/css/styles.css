@@ -1,0 +1,141 @@
+body{
+    font-family: 'Asap', sans-serif;
+}
+
+p{
+    margin-bottom: 0;
+}
+
+.lineaSeparacion{
+    border-right: 2px solid gray;
+}
+
+.fondo{
+    background: #BDBDBD;
+}
+
+.mensaje{
+    border-radius: 15px;
+    max-width: 88%;
+}
+
+.dropup .dropdown-toggle::after{
+    border-bottom: 0;
+}
+
+#chatUnico{
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.envioFormulario{
+    padding-bottom: 3px;
+}
+
+::-webkit-scrollbar {display: none;}
+
+/* html{
+    scroll-behavior: ;
+} */
+
+.iconosButtons{
+    color: dodgerblue;
+}
+
+.Icon{
+    position: relative;
+}
+
+.Icon input{
+    padding-left: 35px;
+}
+
+.Icon i{
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding-top: 11px;
+    padding-left: 10px;
+}
+
+.iconImagen{
+    margin-top: -25px;
+}
+
+.titulo{
+    padding-left: 50px;
+    font-weight: 700;
+}
+
+.fondo-header{
+    background: linear-gradient(45deg, #0069A4, #0FA9FF);
+}
+
+button.btn-lg{
+    display: flex;
+    align-items: center;
+    border-radius: 20px;
+    padding: 10px 25px;
+    border-color: cadetblue;
+    background-color: #fff;
+    font-weight: 700;
+    transition-duration: .8s;
+    outline: none;
+}
+
+button.btn-lg:hover{
+    background-color: #000000;
+    color: white;
+    transform: scale(1.2);
+    transition-duration: .8s;
+}
+
+#mensajesUsuarios{
+    max-height: 79vh;
+    min-height: 35vh;
+    overflow-y: auto;
+}
+
+.dropleft .dropdown-toggle-split::before{
+    border: 0;
+}
+
+.icono-mensajes-nuevos{
+    position: absolute;
+    bottom: 65px;
+    left: 15px;
+    display: none;
+    cursor: pointer;
+}
+
+.dropdown-menu{
+    border-radius: 10px;
+    background-color: rgb(221, 242, 254);
+}
+
+i{
+    cursor: pointer;
+}
+
+.dropdown-menu > button{
+    color: gray;
+}
+
+@media screen and (max-width: 578px){
+    #mensajesUsuarios{
+        max-height: 66vh;
+    }
+}
+
+@media screen and (max-height: 300px){
+    #mensajesUsuarios{
+        max-height: 40vh;
+    }
+}
+
+@media screen and (max-width: 767px){
+    button.btn-lg{
+        width: 90%;
+        justify-content: center;
+    }
+}

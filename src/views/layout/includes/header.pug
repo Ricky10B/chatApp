@@ -1,0 +1,13 @@
+.fondo-header.d-flex
+    .col-10.py-2
+        h2.text-white.ml-3.mt-1.titulo #{titulo}
+    .col-2.text-right.py-1
+        .btn-group.dropleft.mt-2.mr-2
+            button.btn.btn-secondary.dropdown-toggle.dropdown-toggle-split.px-2.py-1(type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
+                i.fas.fa-ellipsis-v.fa-lg
+            .dropdown-menu
+                a.dropdown-item(href='/myAccount') Mi Cuenta
+                a.dropdown-item(href='/allChats') All Chats
+                a.dropdown-item(href='/home') Home
+                .dropdown-divider
+                a.dropdown-item(href='/logout') Logout

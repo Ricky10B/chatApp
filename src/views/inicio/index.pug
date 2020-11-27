@@ -1,0 +1,32 @@
+extends ../layout/index
+block contenido
+    main
+        if usuarios
+            if usuarios.length < 1
+                div
+                    h1.text-center.p-2 No hay Chats ni Salas por ahora
+            else
+                div#contenedorMensajes
+                    each usuario in usuarios
+                        if user
+                            if user.correo != usuario.correo
+                                a(href=`/chat/privado/${usuario._id}`)#chatUnico.p-2.border-bottom.d-flex.bg-light
+                                    div.lineaSeparacion.pr-2.mx-2
+                                        span.mx-1
+                                            if usuario.imagen != 'https://www.adl-logistica.org/wp-content/uploads/2019/07/imagen-perfil-sin-foto.png'
+                                                img(class="rounded-circle", src=`${usuario.imagen}`, width="50px", alt="imagen foto de perfil")
+                                            else
+                                                img(class="rounded-circle", src=`${usuario.imagen}`, width="50px", alt="imagen foto de perfil")
+                                    div
+                                        p.ml-2.mb-0 #{usuario.nombre} #{usuario.apellido}
+                                        p.ml-2.mb-0.text-black-50= mensaje.mensaje
+                                    div.mt-auto.mb-auto.ml-auto.mr-2.lineaActivo
+                                        i(class="fas fa-circle")
+                        else
+                            script.
+                                window.location = 'loginPage'
+        else
+            script.
+                window.location = 'loginPage'
+    script(src="/socket.io/socket.io.js")
+    script(src="/js/home.js")

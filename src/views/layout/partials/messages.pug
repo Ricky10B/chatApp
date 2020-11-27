@@ -1,0 +1,9 @@
+if error != ''
+    .alert.alert-danger.alert-dismissible.show.fade(role="alert")= error
+        button.close(type="button", data-dismiss="alert")
+            span(aria-hidden="true") &times;
+
+if success != ''
+    .alert.alert-success.alert-dismissible.show.fade(role="alert")= success
+        button.close(type="button", data-dismiss="alert")
+            span(aria-hidden="true") &times;

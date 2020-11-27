@@ -1,0 +1,25 @@
+extends ../layout/index
+block contenido
+    if message
+        .m-3
+            .alert.alert-danger.alert-dismissible.show.fade(role="alert")= message
+                button.close(type="button", data-dismiss="alert")
+                    span(aria-hidden="true") &times;
+    .mt-5
+        .col-8.col-md-6.col-xl-4.mx-auto
+            .card
+                .card-header
+                    h3.text-center Identify yourself to enter
+                .card-body
+                    form(action="/SignInPage", method="POST")
+                        .form-group
+                            input(type="email", name="correo", class="form-control", placeholder="Enter your email", value=correo, autofocus, autocomplete="off", required)
+                        .form-group
+                            input(type="password", name="password", class="form-control", placeholder="Enter your password", required)
+                        .form-group
+                            input(type="submit", class="btn btn-primary btn-block", value="Login")
+                    div
+                        small Do not you have an account yet? 
+                            a(href="/") Sign up here
+    script.
+        localStorage.removeItem('token')
