@@ -2,9 +2,9 @@ extends ../layout/index
 block contenido
     main
         if usuarios
-            if usuarios.length < 1
+            if usuarios.length < 2
                 div
-                    h1.text-center.p-2 No hay Chats ni Salas por ahora
+                    h1.text-center.p-2 No hay Chats por ahora
             else
                 div#contenedorMensajes
                     each usuario in usuarios
@@ -14,9 +14,9 @@ block contenido
                                     div.lineaSeparacion.pr-2.mx-2
                                         span.mx-1
                                             if usuario.imagen != 'https://www.adl-logistica.org/wp-content/uploads/2019/07/imagen-perfil-sin-foto.png'
-                                                img(class="rounded-circle", src=`${usuario.imagen}`, width="50px", alt="imagen foto de perfil")
+                                                img(class="rounded-circle", src=`/assets/uploads/${usuario.imagen}`, width="50px", height="43px", alt="imagen foto de perfil")
                                             else
-                                                img(class="rounded-circle", src=`${usuario.imagen}`, width="50px", alt="imagen foto de perfil")
+                                                img(class="rounded-circle", src=`${usuario.imagen}`, width="50px", height="43px", alt="imagen foto de perfil")
                                     div
                                         p.ml-2.mb-0 #{usuario.nombre} #{usuario.apellido}
                                         p.ml-2.mb-0.text-black-50= mensaje.mensaje

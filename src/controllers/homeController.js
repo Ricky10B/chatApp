@@ -5,14 +5,14 @@ const jwt = require('jsonwebtoken')
 exports.renderHome = async (req, res) =>{
     try {
         let likes = await Like.find({ like: true }).countDocuments()
-        let likesUsers = await Like.find()
+        let likeUser = await Like.find({ usuarioLike: req.session.user.user_id })
     
         res.render('home', {
             pagina: 'Home',
             titulo: 'Home Page',
             user: req.session.user,
             likes,
-            likesUsers
+            likeUser
         })
     } catch (error) {
         console.error(error);

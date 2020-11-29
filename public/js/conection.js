@@ -1,11 +1,13 @@
-const socket = io()
+// const socket = io()
 
-socket.on('connect', ()=>{
-    console.log('online socket general')
-    socket.emit('enLinea', { online: 'En Linea', usuario: JSON.parse(localStorage.getItem('token')) })
-})
+// socket.on('connect', () =>{
+//     let dataUser = JSON.parse(localStorage.getItem('token'))[0]
 
-socket.on('disconnect', ()=>{
-    console.log('offline socket general')
-    socket.emit('enLinea', {online: ''})
-})
+//     socket.emit('enLinea', {dataUser})
+// })
+
+// socket.on('disconnect', () =>{
+//     let dataUser = JSON.parse(localStorage.getItem('token'))[0]
+
+//     socket.emit('noLinea', {dataUser})
+// })

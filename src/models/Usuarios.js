@@ -39,6 +39,12 @@ const usersSchema = new Schema({
     linea: {
         type: Boolean,
         default: false
+    },
+    socketId: {
+        type: String,
+        required: false,
+        // default: '',
+        unique: false
     }
 },{
     timestamps: true

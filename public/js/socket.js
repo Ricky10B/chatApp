@@ -16,16 +16,19 @@ inputMensaje.addEventListener('input', () =>{
         btnForm.setAttribute('disabled', "")
     }else{
         btnForm.removeAttribute('disabled')
-        socket.emit('escribiendo', 'escribiendo')
+        data = {
+            mensaje: 'escribiendo',
+            destinatario: window.location.pathname.split('/')[3]
+        }
+        socket.emit('escribiendo', data)
     }
-    console.log(socket.user_id);
 })
 
-socket.on('escribiendo', data =>{
-    document.querySelector('.escribiendo').textContent = data
+socket.on('escribiendo', mensaje =>{
+    document.querySelector('.escribiendoOLinea').textContent = mensaje
     setTimeout(() =>{
-        document.querySelector('.escribiendo').textContent = ''
-    }, 400)
+        document.querySelector('.escribiendoOLinea').textContent = 'en Línea'
+    }, 900)
 })
 
 // Detección de cuando baja completo la pantalla
@@ -99,8 +102,7 @@ form.addEventListener('submit', (e) =>{
         remitente: JSON.parse(localStorage.getItem('token'))[0],
         mensaje,
         fecha: fechaActual,
-        destinatario,
-        sala: `${remitente.correo}-${destinatario}`
+        destinatario
     }
 
     let html = `<div class="mx-2 my-3 d-flex justify-content-end mensajeChat">
@@ -137,20 +139,12 @@ form.addEventListener('submit', (e) =>{
     // audio.play()
 })
 
-/*
-    el linea: "al conectar un usuario enviar por socket el en linea por broadcast"
-    "Eliminar el en linea cuando se desconecte el socket(usuario: 'disconnect')"
-*/
-
-socket.on('connect', () => {
-    console.log('server online')
+socket.on('connect', ()=>{
+    socket.emit('socketOnline', JSON.parse(localStorage.getItem('token'))[0])
 })
 
-// socket.on('disconnect', () => {
-//     console.log('server offline')
-// })
-
-socket.on('mensajeEnviar', (data) =>{
+socket.on('mensajeEnviar', function(data){
+    console.log(data);
 
     let html = `<div class="mx-2 my-3 d-flex mensajeChat">
             <div class="bg-secondary p-2 mx-3 mensaje text-right">
@@ -176,11 +170,6 @@ socket.on('mensajeEnviar', (data) =>{
     inputMensaje.value = ''
     
     mensajesChat.innerHTML += html
-
-    document.getElementById('mensajesUsuarios').scroll({
-        top: 5,
-        behavior: "smooth"
-    })
 
     // let audio = new Audio('/assets/Silbido-corto-de-alerta.mp3')
     // audio.play()

@@ -53,17 +53,22 @@ exports.login = async (req, res) =>{
         }
         
         crearToken(payload)
-            .then( async (token) =>{
-                userFound.linea = true
-                await userFound.save()
-                req.session.user = {
-                    nombre: userFound.nombre,
-                    apellido: userFound.apellido,
-                    correo,
-                    user_id: userFound._id
-                }
-                req.session.token = token
-                res.redirect('/home')
+            .then( (token) =>{
+                Usuario.findOneAndUpdate({correo: userFound.correo}, { linea: true }, { new: true })
+                    .then(() =>{
+                        req.session.user = {
+                            nombre: userFound.nombre,
+                            apellido: userFound.apellido,
+                            correo,
+                            user_id: userFound._id
+                        }
+                        req.session.token = token
+                        res.redirect('/home')
+                    })
+                    .catch(err => {
+                        console.log(err)
+                        res.redirect('/home')
+                    })
             })
             .catch(err =>{
                 return res.render('Login/inicioChat', {
@@ -90,6 +95,7 @@ exports.logout = async (req, res) =>{
         }
         await Usuario.findOneAndUpdate({ correo: req.session.user.correo }, { linea: false })
         req.session.destroy()
+        res.redirect('/loginPage')
     } catch (error) {
         console.log(error)
         res.render('Login/inicioChat', {

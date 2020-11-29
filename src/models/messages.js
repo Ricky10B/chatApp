@@ -21,6 +21,14 @@ const messagesSchema = new Schema({
         type: String,
         required: true,
         trim: true,
+    },
+    visibleMio: {
+        type: Boolean,
+        default: true
+    },
+    visibleOtro: {
+        type: Boolean,
+        default: true
     }
 },{
     timestamps: true

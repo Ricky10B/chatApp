@@ -10,14 +10,14 @@ block contenido
                 p La página tiene recursos limitados lo cuál podran agotarse y dejar de funcionar correctamente, se eliminarán algunos datos como usuarios, mensajes, fotos, likes, etc, para que la página funcione para otros usuarios
                 p.mt-3.mr-2.text-right
                     span.iconoMeGusta
-                        if likesUsers && user
-                            each likeUser in likesUsers
-                                if likeUser.usuarioLike == user.user_id && likeUser.like
+                        if likeUser
+                            each like in likeUser
+                                if like.like
                                     i(class="fas fa-thumbs-up fa-lg text-primary meGusta d-inline-block")
                                 else
                                     i(class="far fa-thumbs-up fa-lg meGustaNo d-inline-block")
                             else
-                                    i(class="far fa-thumbs-up fa-lg meGustaNo d-inline-block")
+                                i(class="far fa-thumbs-up fa-lg meGustaNo d-inline-block")
                         else
                             i(class="far fa-thumbs-up fa-lg meGustaNo d-inline-block")
                     span.ml-2.countLikes= likes
@@ -40,5 +40,5 @@ block contenido
     else
         script.
             window.location = 'loginPage'
-
+    //- script(src="/socket.io/socket.io.js")
     script(src="/js/mainPage.js")
