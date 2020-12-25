@@ -1,73 +1,73 @@
 extends ../layout/index
 block contenido
-    if !user
-        script.
-            window.location = '/loginPage'
-    else
-        main.text-white
-            div.bg-primary.d-flex.sticky-top
-                .col-3.col-sm-2.col-lg-1
-                    div.px-1.py-2.mt-1.lineaSeparacion
-                        if usuario.imagen != 'https://www.adl-logistica.org/wp-content/uploads/2019/07/imagen-perfil-sin-foto.png'
-                            img(class="rounded-circle", src=`/assets/uploads/${usuario.imagen}`, width="55px", height="40px", alt="imagen de perfil")
-                        else
-                            img(class="rounded-circle", src=`${usuario.imagen}`, width="55px", height="40px", alt="imagen de perfil")
-                .col-5.col-sm-8.col-lg-9
-                    div.mt-2
-                        p.mb-0 #{usuario.nombre} #{usuario.apellido}
-                        if usuario.linea
-                            small.escribiendoOLinea en Línea
-                .col-3.col-sm-2.col-lg-2
-                    div.d-flex.justify-content-end
-                        a(href="/home", title="title")
-                            i(class="fas fa-house-user fa-2x text-white mr-4 mt-3")
-                        .btn-group.dropleft.mt-2.mr-2
-                            button.btn.btn-secondary.dropdown-toggle.dropdown-toggle-split.px-2.py-1(type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
-                                i.fas.fa-ellipsis-v
-                            .dropdown-menu
-                                a.dropdown-item(href='#', id="vaciarChat") Vaciar Chat
-                                a.dropdown-item(href='#') Another action
-                                a.dropdown-item(href='#') Something else here
-            div#mensajesUsuarios.mx-1.my-2
-                each mensaje in mensajes
-                    if mensaje.destinatario.toString() != usuario._id.toString()
-                        if mensaje.visibleOtro
-                            div.mx-2.my-3.d-flex.mensajeChat
-                                div.bg-secondary.p-2.mx-3.mensaje.text-right
-                                    div
-                                        small.mb-0.text-right
-                                            b= mensaje.fecha
-                                        div.btn-group.dropup.d-inline
-                                            i(class="fas fa-angle-up dropdown-toggle dropdown-toggle-split pl-2 pr-0", data-toggle="dropdown", aria-haspopup="true", aria-expanded="false")
-                                                span(class="sr-only") Toggle Dropdown
-                                            div(class="dropdown-menu")
-                                                button(class="dropdown-item" type="button" id="eliminarMensaje", onclick="eliminarMensajeUnico(this)") Eliminar Mensaje
-                                                button(class="dropdown-item" type="button") Action
-                                                button(class="dropdown-item" type="button") Action
-                                    b(class="mx-2")= mensaje.mensaje
+    main.text-white
+        div.bg-primary.d-flex.sticky-top
+            .col-3.col-sm-2.col-lg-1
+                div.px-1.py-2.mt-1.lineaSeparacion
+                    if usuario.imagen != 'https://www.adl-logistica.org/wp-content/uploads/2019/07/imagen-perfil-sin-foto.png'
+                        img(class="rounded-circle", src=`/assets/uploads/${usuario.imagen}`, width="45px", height="40px", alt="imagen de perfil")
                     else
-                        if mensaje.visibleMio
-                            div(class="mx-2 my-3 d-flex justify-content-end mensajeChat")
-                                div(class="bg-primary p-2 mx-3 mensaje text-right")
-                                    div
-                                        small(class="mb-0 text-right")
-                                            b= mensaje.fecha
-                                        div.btn-group.dropup.d-inline
-                                            i(class="fas fa-angle-up dropdown-toggle dropdown-toggle-split pl-2 pr-0", data-toggle="dropdown", aria-haspopup="true", aria-expanded="false")
-                                                span(class="sr-only") Toggle Dropdown
-                                            div(class="dropdown-menu")
-                                                button(class="dropdown-item" type="button" id="eliminarMensaje", onclick="eliminarMensajeUnico(this)") Eliminar Mensaje
-                                                button(class="dropdown-item" type="button") Action
-                                                button(class="dropdown-item" type="button") Action
-                                    b(class="mx-2") #{mensaje.mensaje}
-            .fixed-bottom
-                div.icono-mensajes-nuevos
-                    i(class="fas fa-chevron-circle-down fa-2x text-primary")
-                form#envioMensajes.mx-2
-                    div.form-group.d-flex
-                        input#mensaje(type="text", name="mensaje", placeholder="Escribe un mensaje...", class="form-control rounded-pill mr-2", autofocus, autocomplete="off")
-                        button(type="submit", class="btn btn-primary rounded-pill envioFormulario")
-                            i(class="fas fa-greater-than fa-lg")
+                        img(class="rounded-circle", src=`${usuario.imagen}`, width="45px", height="40px", alt="imagen de perfil")
+            .col-5.col-sm-8.col-lg-9
+                div.mt-2
+                    p.mb-0 #{usuario.nombre} #{usuario.apellido}
+                    if usuario.linea
+                        small.escribiendoOLinea en linea
+                    else
+                        small.escribiendoOLinea
+            .col-4.col-sm-2.col-lg-2
+                div.d-flex.justify-content-end
+                    a(href="/home", title="title")
+                        i(class="fas fa-house-user fa-2x text-white mr-4 mt-3")
+                    .btn-group.dropleft.mt-2.mr-2
+                        button.btn.btn-secondary.dropdown-toggle.dropdown-toggle-split.px-2.py-1(type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
+                            i.fas.fa-ellipsis-v
+                        .dropdown-menu
+                            a.dropdown-item(href='#', id="vaciarChat") Vaciar Chat
+                            a.dropdown-item(href='/home') Home
+                            a.dropdown-item(href='/allChats') All Chats
+                            a.dropdown-item(href='/myAccount') Mi Cuenta
+        div#mensajesUsuarios.mx-1.my-2
+            each mensaje, index in mensajes
+                if mensajesNoLeidos[0]
+                    if mensaje.createdAt.toString() == mensajesNoLeidos[0].createdAt.toString()
+                        .bg-secondary.rounded-pill.text-center.py-2.mt-2.mb-3
+                            span#mensajesNoLeidos.py-2.px-4.rounded-pill #{mensajesNoLeidos.length} mensajes sin leer
+                if mensaje.destinatario.toString() != usuario._id.toString()
+                    if mensaje.visibleOtro
+                        include ../layout/partials/fechaMessage
+                        div.my-1.d-flex.mensajeChat
+                            div.bg-secondary.p-2.mx-3.mensaje.text-left
+                                .text-right
+                                    small.mb-0
+                                        b= mensaje.fecha
+                                    div.btn-group.dropup.d-inline
+                                        i(class="fas fa-angle-up dropdown-toggle dropdown-toggle-split pl-2 pr-0", data-toggle="dropdown", aria-haspopup="true", aria-expanded="false")
+                                            span(class="sr-only") Toggle Dropdown
+                                        div(class="dropdown-menu")
+                                            button(class="dropdown-item" type="button" id="eliminarMensaje", onclick="eliminarMensajeUnico(this)") Eliminar Mensaje
+                                b(class="mx-2")= mensaje.mensaje
+                else
+                    if mensaje.visibleMio
+                        include ../layout/partials/fechaMessage
+                        div(class="my-1 d-flex justify-content-end mensajeChat")
+                            div(class="bg-primary p-2 mx-3 mensaje text-right")
+                                .text-right
+                                    small(class="mb-0")
+                                        b= mensaje.fecha
+                                    div.btn-group.dropup.d-inline
+                                        i(class="fas fa-angle-up dropdown-toggle dropdown-toggle-split pl-2 pr-0", data-toggle="dropdown", aria-haspopup="true", aria-expanded="false")
+                                            span(class="sr-only") Toggle Dropdown
+                                        div(class="dropdown-menu")
+                                            button(class="dropdown-item" type="button" id="eliminarMensaje", onclick="eliminarMensajeUnico(this)") Eliminar Mensaje
+                                b(class="mx-2") #{mensaje.mensaje}
+        .fixed-bottom
+            div.icono-mensajes-nuevos
+                i(class="fas fa-chevron-circle-down fa-2x text-primary")
+            form#envioMensajes.mx-2
+                div.form-group.d-flex
+                    input#mensaje(type="text", name="mensaje", placeholder="Escribe un mensaje...", class="form-control rounded-pill mr-2", autofocus, autocomplete="off")
+                    button(type="submit", class="btn btn-primary rounded-pill envioFormulario")
+                        i(class="fas fa-greater-than fa-lg")
 
-        //- script(src="/socket.io/socket.io.js")
-        script(src="/js/socket.js")
+    script(src="/js/socket.js")

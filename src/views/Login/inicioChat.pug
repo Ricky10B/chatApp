@@ -1,5 +1,11 @@
 extends ../layout/index
 block contenido
+    if user
+        script.
+            window.location = '/home'
+    else
+        script.
+            localStorage.removeItem('token')
     if message
         .m-3
             .alert.alert-danger.alert-dismissible.show.fade(role="alert")= message
@@ -13,7 +19,7 @@ block contenido
                 .card-body
                     form(action="/SignInPage", method="POST")
                         .form-group
-                            input(type="email", name="correo", class="form-control", placeholder="Enter your email", value=correo, autofocus, autocomplete="off", required)
+                            input(type="email", name="correo", class="form-control", placeholder="Enter your email", value=correo, autofocus, autocomplete="on", required)
                         .form-group
                             input(type="password", name="password", class="form-control", placeholder="Enter your password", required)
                         .form-group

@@ -5,10 +5,11 @@ const { crearToken } = require('../jwt/jwt')
 exports.renderLogin = (req, res) =>{
     if(req.session.user){
         return res.redirect('/home')
+    }else{
+        res.render('Login/inicioChat', {
+            pagina: 'Login'
+        })
     }
-    res.render('Login/inicioChat', {
-        pagina: 'Login'
-    })
 }
 
 exports.login = async (req, res) =>{
@@ -23,7 +24,14 @@ exports.login = async (req, res) =>{
             })
         }
 
-        const userFound = await Usuario.findOne({correo})
+        const userFound = await Usuario.findOne({correo}).catch(err => {
+            console.log(err)
+            return res.render('Login/inicioChat', {
+                pagina: 'Login',
+                correo,
+                message: 'Username does not exist'
+            })
+        })
     
         if(!userFound){
             return res.render('Login/inicioChat', {
@@ -53,7 +61,7 @@ exports.login = async (req, res) =>{
         }
         
         crearToken(payload)
-            .then( (token) =>{
+            .then((token) =>{
                 Usuario.findOneAndUpdate({correo: userFound.correo}, { linea: true }, { new: true })
                     .then(() =>{
                         req.session.user = {
@@ -63,11 +71,11 @@ exports.login = async (req, res) =>{
                             user_id: userFound._id
                         }
                         req.session.token = token
-                        res.redirect('/home')
+                        return res.redirect('/home')
                     })
                     .catch(err => {
                         console.log(err)
-                        res.redirect('/home')
+                        return res.redirect('/loginPage')
                     })
             })
             .catch(err =>{

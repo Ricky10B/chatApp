@@ -1,2 +1,4 @@
 .env
 node_modules/
+public/assets/uploads/*.jpg
+public/assets/uploads/*.png

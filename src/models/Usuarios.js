@@ -43,7 +43,6 @@ const usersSchema = new Schema({
     socketId: {
         type: String,
         required: false,
-        // default: '',
         unique: false
     }
 },{

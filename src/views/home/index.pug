@@ -1,44 +1,38 @@
 extends ../layout/index
 block contenido
-    if user
-        div
-            a(id="aToken", title="title", data-token=`${token}`, style.display="none")
-            .jumbotron.my-5.mx-3.mx-md-5
-                h1.display-4 Hello #{user.nombre} #{user.apellido}
-                p.lead Ésta es una aplicación de muestra y practica, Puedes indicar si te gusta
-                hr.my-4
-                p La página tiene recursos limitados lo cuál podran agotarse y dejar de funcionar correctamente, se eliminarán algunos datos como usuarios, mensajes, fotos, likes, etc, para que la página funcione para otros usuarios
-                p.mt-3.mr-2.text-right
-                    span.iconoMeGusta
-                        if likeUser
-                            each like in likeUser
-                                if like.like
-                                    i(class="fas fa-thumbs-up fa-lg text-primary meGusta d-inline-block")
-                                else
-                                    i(class="far fa-thumbs-up fa-lg meGustaNo d-inline-block")
+    div
+        .jumbotron.my-5.mx-3.mx-md-5
+            h1.display-4 Hello #{user.nombre} #{user.apellido}
+            p.lead Ésta es una aplicación de muestra y practica, Puedes indicar si te gusta
+            hr.my-4
+            p La página tiene recursos limitados lo cuál podran agotarse y dejar de funcionar correctamente, se eliminarán algunos datos como usuarios, mensajes, fotos, likes, etc, para que la página funcione para otros usuarios
+            p.mt-3.mr-2.text-right
+                span.iconoMeGusta
+                    if likeUser
+                        each like in likeUser
+                            if like.like
+                                i(class="fas fa-thumbs-up fa-lg text-primary meGusta d-inline-block")
                             else
                                 i(class="far fa-thumbs-up fa-lg meGustaNo d-inline-block")
                         else
                             i(class="far fa-thumbs-up fa-lg meGustaNo d-inline-block")
-                    span.ml-2.countLikes= likes
-            .my-5.d-flex.flex-column.flex-md-row
-                .offset-1.offset-md-0.col-10.col-md-4.my-3
-                    a(href="/myAccount").text-decoration-none
-                        button.btn-lg.mx-auto
-                            i(class="fas fa-user-circle fa-2x mr-2 iconosButtons")
-                            span My Account
-                .offset-1.offset-md-0.col-10.col-md-4.my-3
-                    a(href="/allChats").text-decoration-none
-                        button.btn-lg.mx-auto
-                            i(class="fas fa-comments fa-2x mr-2 iconosButtons")
-                            span All Chats
-                .offset-1.offset-md-0.col-10.col-md-4.my-3
-                    a(href="/logout").text-decoration-none
-                        button.btn-lg.mx-auto
-                            i(class="fas fa-sign-out-alt fa-2x mr-2 iconosButtons")
-                            span Logout
-    else
-        script.
-            window.location = 'loginPage'
-    //- script(src="/socket.io/socket.io.js")
+                    else
+                        i(class="far fa-thumbs-up fa-lg meGustaNo d-inline-block")
+                span.ml-2.countLikes= likes
+        .my-5.d-flex.flex-column.flex-md-row
+            .offset-1.offset-md-0.col-10.col-md-4.my-3
+                a(href="/myAccount").text-decoration-none
+                    button.btn-lg.mx-auto
+                        i(class="fas fa-user-circle fa-2x mr-2 iconosButtons")
+                        span My Account
+            .offset-1.offset-md-0.col-10.col-md-4.my-3
+                a(href="/allChats").text-decoration-none
+                    button.btn-lg.mx-auto
+                        i(class="fas fa-comments fa-2x mr-2 iconosButtons")
+                        span All Chats
+            .offset-1.offset-md-0.col-10.col-md-4.my-3
+                a(href="/logout").text-decoration-none
+                    button.btn-lg.mx-auto
+                        i(class="fas fa-sign-out-alt fa-2x mr-2 iconosButtons")
+                        span Logout
     script(src="/js/mainPage.js")

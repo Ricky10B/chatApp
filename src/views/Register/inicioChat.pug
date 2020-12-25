@@ -3,6 +3,9 @@ block contenido
     if user
         script.
             window.location = '/home'
+    else
+        script.
+            localStorage.removeItem('token')
     .m-3
         if message
             .alert.alert-danger.alert-dismissible.show.fade(role="alert")= message

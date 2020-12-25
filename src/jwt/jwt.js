@@ -32,20 +32,26 @@ exports.crearToken = (payload) =>{
 }
 
 exports.verifyToken = (token) =>{
-    return new Promise( async (resolve, reject) =>{
+    return new Promise((resolve, reject) =>{
         try {
             if(!token) return reject('Unauthorized')
     
             const decoded = jwt.verify(token, process.env.JWTSECRET)
     
-            await Session.findOne({
-                user_id: decoded.user_id
-            }).catch(err =>{
+            Session.findOne({
+                correo: decoded.correo
+            }).then(session =>{
+                if(!session){
+                    return reject('Unauthorized')
+                }else{
+                    return resolve(decoded)
+                }
+            })
+            .catch(err =>{
                 console.log(err)
                 return reject('Unauthorized')
             })
 
-            resolve(decoded)
         } catch (error) {
             console.log(error)
             return reject('Unexpected error')

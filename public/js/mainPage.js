@@ -3,20 +3,6 @@ const like = document.querySelector('.meGusta')
 const noLike = document.querySelector('.meGustaNo')
 const counts = document.querySelector('.countLikes')
 
-let token = document.getElementById('aToken').getAttribute('data-token')
-
-let tokens = JSON.parse(localStorage.getItem('token')) || []
-
-if(tokens){
-    if(token !== tokens[0]){
-        tokens.push(token)
-        localStorage.setItem('token', JSON.stringify(tokens))
-    }
-}else{
-    tokens.push(token)
-    localStorage.setItem('token', JSON.stringify(tokens))
-}
-
 EventListeners()
 
 function EventListeners(){

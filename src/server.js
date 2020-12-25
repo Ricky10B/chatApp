@@ -6,8 +6,6 @@ const methodOverride = require('method-override')
 const session = require('express-session')
 const flash = require('connect-flash')
 const fileUpload = require('express-fileupload')
-// const cors = require('cors')
-// const helmet = require('helmet')
 const morgan = require('morgan')
 
 // initializations
@@ -32,9 +30,10 @@ app.use(session({
 }))
 app.use(flash())
 app.use(morgan('dev'))
-// app.use(helmet())
 app.use(fileUpload())
-// app.use(cors())
+
+// seguridad para la app
+app.disabled('x-powered-by')
 
 // Global variables
 app.use((req, res, next) =>{

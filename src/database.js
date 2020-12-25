@@ -6,4 +6,4 @@ mongoose.connect(process.env.MONGOURI, {
     useUnifiedTopology: true,
     useFindAndModify: false
 }).then(db => console.log('Connected to DB'))
-    .catch(err => console.log('Error to connected to DB', err))
+    .catch(err => console.error('Error to connected to DB', err))

@@ -29,6 +29,10 @@ const messagesSchema = new Schema({
     visibleOtro: {
         type: Boolean,
         default: true
+    },
+    visto: {
+        type: Boolean,
+        default: false
     }
 },{
     timestamps: true

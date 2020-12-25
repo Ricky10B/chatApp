@@ -3,10 +3,11 @@ const Usuario = require('../models/Usuarios')
 exports.renderRegister = (req, res) =>{
     if(req.session.user){
         return res.redirect('/home')
+    }else{
+        res.render('Register/inicioChat', {
+            pagina: 'Register'
+        })
     }
-    res.render('Register/inicioChat', {
-        pagina: 'Register'
-    })
 }
 
 exports.register = async (req, res) =>{

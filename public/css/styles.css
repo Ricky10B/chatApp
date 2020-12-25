@@ -58,6 +58,86 @@ p{
     margin-top: -25px;
 }
 
+/* estilos de notificacion */
+.cerrarNotificacion{
+    padding: 0;
+    border: 0;
+    background: transparent;
+    font-size: 20px;
+}
+
+.cerrarNotificacion:focus{
+    outline: none;
+}
+
+.cerrarNotificacion:hover{
+    color: aqua;
+}
+
+.notification{
+    background: azure;
+    border-radius: 10px;
+    transform: translate(0, -100px);
+    transition: all .5s ease-out;
+    position: absolute;
+    z-index: 10000;
+    top: 0;
+    left: 30%;
+}
+
+.message{
+    min-height: 20px;
+    max-height: 47px;
+    overflow: hidden;
+}
+
+#mensajesNoLeidos{
+    background-color: mediumblue;
+}
+
+#fechaMensajes{
+    background-color: dimgrey;
+    padding: 3px 15px;
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.hora{
+    position: absolute;
+    bottom: 1px;
+    right: 3%;
+}
+
+.usuarioR{
+    font-weight: 600;
+    max-height: 28px;
+    overflow: hidden;
+}
+
+@media screen and (max-width: 1200px){
+    .notification{
+        left: 25%;
+    }
+}
+
+@media screen and (max-width: 991px){
+    .notification{
+        left: 17%;
+    }
+}
+
+@media screen and (max-width: 768px){
+    .notification{
+        left: 9%;
+    }
+}
+
+@media screen and (max-width: 578px){
+    .notification{
+        left: 0%;
+    }
+}
+
 .titulo{
     padding-left: 50px;
     font-weight: 700;

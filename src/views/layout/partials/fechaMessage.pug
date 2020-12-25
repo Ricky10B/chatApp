@@ -1,0 +1,60 @@
+if index > 0
+    if new Date(mensaje.createdAt).getDate() != new Date(mensajes[index-1].createdAt).getDate() || new Date(mensaje.createdAt).getMonth() != new Date(mensajes[index -1].createdAt).getMonth() || new Date(mensaje.createdAt).getFullYear() != new Date(mensajes[index -1].createdAt).getFullYear()
+        .text-center.mt-1.py-1
+            case new Date(mensaje.createdAt).getMonth()
+                when 0
+                    span#fechaMensajes.rounded-pill #{new Date(mensaje.createdAt).getDate()} de Enero del #{new Date(mensaje.createdAt).getFullYear()}
+                when 1
+                    span#fechaMensajes.rounded-pill #{new Date(mensaje.createdAt).getDate()} de Febrero del #{new Date(mensaje.createdAt).getFullYear()}
+                when 2
+                    span#fechaMensajes.rounded-pill #{new Date(mensaje.createdAt).getDate()} de Marzo del #{new Date(mensaje.createdAt).getFullYear()}
+                when 3
+                    span#fechaMensajes.rounded-pill #{new Date(mensaje.createdAt).getDate()} de Abril del #{new Date(mensaje.createdAt).getFullYear()}
+                when 4
+                    span#fechaMensajes.rounded-pill #{new Date(mensaje.createdAt).getDate()} de Mayo del #{new Date(mensaje.createdAt).getFullYear()}
+                when 5
+                    span#fechaMensajes.rounded-pill #{new Date(mensaje.createdAt).getDate()} de Junio del #{new Date(mensaje.createdAt).getFullYear()}
+                when 6
+                    span#fechaMensajes.rounded-pill #{new Date(mensaje.createdAt).getDate()} de Julio del #{new Date(mensaje.createdAt).getFullYear()}
+                when 7
+                    span#fechaMensajes.rounded-pill #{new Date(mensaje.createdAt).getDate()} de Agosto del #{new Date(mensaje.createdAt).getFullYear()}
+                when 8
+                    span#fechaMensajes.rounded-pill #{new Date(mensaje.createdAt).getDate()} de Septiembre del #{new Date(mensaje.createdAt).getFullYear()}
+                when 9
+                    span#fechaMensajes.rounded-pill #{new Date(mensaje.createdAt).getDate()} de Octubre del #{new Date(mensaje.createdAt).getFullYear()}
+                when 10
+                    span#fechaMensajes.rounded-pill #{new Date(mensaje.createdAt).getDate()} de Noviembre del #{new Date(mensaje.createdAt).getFullYear()}
+                when 11
+                    span#fechaMensajes.rounded-pill #{new Date(mensaje.createdAt).getDate()} de Diciembre del #{new Date(mensaje.createdAt).getFullYear()}
+                default
+                    span#fechaMensajes.rounded-pill Fallo en el registro de la fecha
+else
+    .text-center.mt-1.py-1
+        case new Date(mensaje.createdAt).getMonth()
+            when 0
+                span#fechaMensajes.rounded-pill #{new Date(mensaje.createdAt).getDate()} de Enero del #{new Date(mensaje.createdAt).getFullYear()}
+            when 1
+                span#fechaMensajes.rounded-pill #{new Date(mensaje.createdAt).getDate()} de Febrero del #{new Date(mensaje.createdAt).getFullYear()}
+            when 2
+                span#fechaMensajes.rounded-pill #{new Date(mensaje.createdAt).getDate()} de Marzo del #{new Date(mensaje.createdAt).getFullYear()}
+            when 3
+                span#fechaMensajes.rounded-pill #{new Date(mensaje.createdAt).getDate()} de Abril del #{new Date(mensaje.createdAt).getFullYear()}
+            when 4
+                span#fechaMensajes.rounded-pill #{new Date(mensaje.createdAt).getDate()} de Mayo del #{new Date(mensaje.createdAt).getFullYear()}
+            when 5
+                span#fechaMensajes.rounded-pill #{new Date(mensaje.createdAt).getDate()} de Junio del #{new Date(mensaje.createdAt).getFullYear()}
+            when 6
+                span#fechaMensajes.rounded-pill #{new Date(mensaje.createdAt).getDate()} de Julio del #{new Date(mensaje.createdAt).getFullYear()}
+            when 7
+                span#fechaMensajes.rounded-pill #{new Date(mensaje.createdAt).getDate()} de Agosto del #{new Date(mensaje.createdAt).getFullYear()}
+            when 8
+                span#fechaMensajes.rounded-pill #{new Date(mensaje.createdAt).getDate()} de Septiembre del #{new Date(mensaje.createdAt).getFullYear()}
+            when 9
+                span#fechaMensajes.rounded-pill #{new Date(mensaje.createdAt).getDate()} de Octubre del #{new Date(mensaje.createdAt).getFullYear()}
+            when 10
+                span#fechaMensajes.rounded-pill #{new Date(mensaje.createdAt).getDate()} de Noviembre del #{new Date(mensaje.createdAt).getFullYear()}
+            when 11
+                span#fechaMensajes.rounded-pill #{new Date(mensaje.createdAt).getDate()} de Diciembre del #{new Date(mensaje.createdAt).getFullYear()}
+            default
+                span#fechaMensajes.rounded-pill Fallo en el registro de la fecha
+                

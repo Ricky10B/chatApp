@@ -7,7 +7,7 @@ const fs = require('fs')
 exports.myAccount = async (req, res) =>{
     try {
         const IUser = await Usuario.findById(req.session.user.user_id)
-        res.render('miCuenta', {
+        return res.render('miCuenta', {
             pagina: 'My Account',
             titulo: 'My Account',
             IUser
@@ -15,18 +15,15 @@ exports.myAccount = async (req, res) =>{
     } catch (error) {
         console.log(error);
         req.flash('error_msg', 'Unexpected error, try again')
-        res.redirect('/home', 500)
+        return res.redirect('/home', 500)
     }
 }
 
 exports.editarData = async (req, res) =>{
     try {
         let userId = req.params.id
-        console.log('body', req.body);
-        console.log('files', req.files);
         const IUser = await Usuario.findById(req.session.user.user_id)
-        console.log(IUser);
-        if(userId != req.session.user.user_id){
+        if(userId != IUser._id){
             return res.json({
                 user: false,
                 message: 'Unauthorized'
@@ -65,13 +62,12 @@ exports.editarData = async (req, res) =>{
                         })
                     })
 
-                    res.json({
+                    return res.json({
                         user: userUpdated,
                         message: 'User updated successfully'
                     })
                 }else{
                     let imagenPerfilU = req.files
-                    console.log(fs.existsSync(path.join('public', 'assets', 'uploads', IUser.imagen)));
                     if(fs.existsSync(path.join('public', 'assets', 'uploads', IUser.imagen))){
                         fs.unlinkSync(path.join('public', 'assets', 'uploads', IUser.imagen))
                     }

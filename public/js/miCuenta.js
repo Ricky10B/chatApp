@@ -58,13 +58,6 @@ async function editarDatosUsuario(e){
     formData.append("email", email.value)
     formData.append("password", passw.value)
     formData.append("image", fileImage.files[0])
-    // let data = {
-    //     name: name.value,
-    //     lastName: lastName.value,
-    //     age: age.value,
-    //     email: email.value,
-    //     password: passw.value
-    // }
 
     await fetch(`/edicionData/${userId.value}`, {
         method: 'PUT',
@@ -74,7 +67,6 @@ async function editarDatosUsuario(e){
     })
         .then(response => response.json())
         .then(res =>{
-            console.log(res)
             if(res.message == 'User updated successfully'){
                 mensajeAlerta.innerHTML = `
                 <div class="alert alert-success alert-dismissible show fade m-3" role="alert">
@@ -89,7 +81,12 @@ async function editarDatosUsuario(e){
                 lastName.value = res.user.apellido
                 age.value = res.user.edad
                 email.value = res.user.correo
-                document.querySelector('img').src = '/assets/uploads/' + res.user.imagen
+                if(res.user.imagen != 'https://www.adl-logistica.org/wp-content/uploads/2019/07/imagen-perfil-sin-foto.png'){
+                    document.querySelector('.imgPerfil').src = `/assets/uploads/${res.user.imagen}`
+                }else{
+                    document.querySelector('.imgPerfil').src = 'https://www.adl-logistica.org/wp-content/uploads/2019/07/imagen-perfil-sin-foto.png'
+                }
+
             }else{
                 mensajeAlerta.innerHTML = `
                 <div class="alert alert-danger alert-dismissible show fade m-3" role="alert">
@@ -115,29 +112,6 @@ async function editarDatosUsuario(e){
             </div>`
         })
 }
-
-// fileImage.addEventListener('change', (e) =>{
-    // let formData = new FormData()
-    // console.log(fileImage.files[0])
-    // let dataImage = {
-    //     image: e.target.value
-    // }
-    // if(fileImage.files[0]){
-    //     fetch(`/edicionData/${userId.value}`, {
-    //         method: 'PUT',
-    //         mode: 'same-origin',
-    //         cache: 'no-cache',
-    //         headers: {
-    //             'Accept': 'application/json',
-                // 'Content-Type': 'multipart/form-data; boundary=requestBoundary'
-//             },
-//             body: JSON.stringify({ image: fileImage.files[0] })
-//         })
-//             .then(response => response.json())
-//             .then(res => console.log(res))
-//             .catch(err => console.log(err))
-//     }
-// })
 
 function click(){
     image.click()

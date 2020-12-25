@@ -36,7 +36,6 @@ const sessionSchema = new Schema({
         required: true,
         expires: 60 * 120,
         default: Date.now()
-        // expires: new Date().getTime() + (60 * 120 * 1000)
     }
 },{
     timestamps: true

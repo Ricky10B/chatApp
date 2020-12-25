@@ -19,14 +19,11 @@ block contenido
                                                 img(class="rounded-circle", src=`${usuario.imagen}`, width="50px", height="43px", alt="imagen foto de perfil")
                                     div
                                         p.ml-2.mb-0 #{usuario.nombre} #{usuario.apellido}
-                                        p.ml-2.mb-0.text-black-50= mensaje.mensaje
-                                    div.mt-auto.mb-auto.ml-auto.mr-2.lineaActivo
-                                        i(class="fas fa-circle")
+                                        p.ml-2.mb-0.text-black-50
                         else
                             script.
                                 window.location = 'loginPage'
         else
             script.
                 window.location = 'loginPage'
-    script(src="/socket.io/socket.io.js")
     script(src="/js/home.js")
