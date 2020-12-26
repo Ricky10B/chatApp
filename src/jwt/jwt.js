@@ -7,7 +7,7 @@ exports.crearToken = (payload) =>{
         try {
             if(!payload) return reject('Unauthorized')
     
-            if(![payload._id].every(Types.ObjectId)) return reject('Unauthorized')
+            if(![payload.user_id].every(Types.ObjectId)) return reject('Unauthorized')
     
             const token = jwt.sign({ nombre: payload.nombre, apellido: payload.apellido, edad: payload.edad, correo: payload.correo, role: payload.role }, process.env.JWTSECRET, { expiresIn: 60 * 120 })
     

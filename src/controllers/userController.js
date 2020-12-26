@@ -68,6 +68,9 @@ exports.editarData = async (req, res) =>{
                     })
                 }else{
                     let imagenPerfilU = req.files
+                    if(!fs.existsSync(path.join('public', 'assets', 'uploads'))){
+                        fs.mkdirSync(path.join('public', 'assets', 'uploads'))
+                    }
                     if(fs.existsSync(path.join('public', 'assets', 'uploads', IUser.imagen))){
                         fs.unlinkSync(path.join('public', 'assets', 'uploads', IUser.imagen))
                     }

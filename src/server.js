@@ -17,6 +17,7 @@ require('./database')
 app.set('port', process.env.PORT || 3000)
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'pug')
+app.set('trust proxy', 1)
 
 // middlewares
 app.use(express.urlencoded({ extended: false }))
@@ -26,7 +27,10 @@ app.use(session({
     secret: 'secret',
     saveUninitialized: false,
     resave: false,
-    cookie: { maxAge: 60 * 120 * 1000 }
+    cookie: {
+        secure: true,
+        maxAge: 60 * 120 * 1000 
+    }
 }))
 app.use(flash())
 app.use(morgan('dev'))
